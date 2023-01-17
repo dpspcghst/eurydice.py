@@ -73,6 +73,32 @@ class Node():
 
         return result
 
+    def preorder_traversal(self, root):
+        """
+        Root -> Left -> Right
+        """
+
+        result = []
+
+        if root:
+            result.append(root.data)
+            result = result + self.preorder_traversal(root.left)
+            result = result + self.preorder_traversal(root.right)
+
+        return result
+
+    def post_order_traversal(self, root):
+        """
+        Left -> Right -> Root
+        """
+
+        result = []
+        if root:
+            result = self.post_order_traversal(root.left)
+            result = result + self.post_order_traversal(root.right)
+            result.append(root.data)
+
+        return result
 
 if __name__ == "__main__":
     """
@@ -85,5 +111,7 @@ if __name__ == "__main__":
     root.insert(five)
     root.insert(six)
     root.insert(seven)
-    # root.print_tree()
+    root.print_tree()
     print(root.in_order_traversal(root))
+    print(root.preorder_traversal(root))
+    print(root.post_order_traversal(root))
